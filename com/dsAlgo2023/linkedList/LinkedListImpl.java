@@ -1,6 +1,6 @@
-package com.dsAlgo2023.LinkedList;
+package com.dsAlgo2023.linkedList;
 
-public class Main {
+public class LinkedListImpl {
     public static void main(String[] args) throws Exception {
         LinkedList<Integer> list= new LinkedList<>();
         list.addAtEnd(1);
