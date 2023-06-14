@@ -37,23 +37,23 @@ class Stack<T>{
     }
 
     public void pop(){
-        if(stackList.isEmpty()){
+        if(isEmpty()){
             throw new EmptyStackException();
         }
         stackList.remove(stackList.size()-1);
     }
 
     public void printStack(){
-        for(T x:stackList){
-            System.out.println(x);
+        for(int i=stackList.size()-1;i>=0;i--){
+            System.out.println(stackList.get(i));
         }
     }
 
     public T peek(){
-        if(stackList.isEmpty()){
+        if(isEmpty()){
             throw new EmptyStackException();
         }
       return stackList.get(stackList.size()-1);
     }
-    
+
 }
