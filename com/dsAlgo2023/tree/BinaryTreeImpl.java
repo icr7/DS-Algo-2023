@@ -1,5 +1,8 @@
 package com.dsAlgo2023.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTreeImpl {
     public static void main(String[] args) {
         BinaryTree myTree = new BinaryTree();
@@ -9,6 +12,7 @@ public class BinaryTreeImpl {
         myTree.add(7);
         myTree.add(9);
         System.out.println(myTree.root);
+        myTree.traverseInLevel();
     }
 
 }
@@ -57,5 +61,17 @@ class BinaryTree{
             root.right=insertTree(root.right,data);
         }
         return root;
+    }
+
+    public void traverseInLevel(){
+        Queue<TreeNode> levelQ = new LinkedList<>();
+        if(root!=null) levelQ.add(root);
+        while(levelQ.size()!=0){
+            if(levelQ.peek().left!=null) levelQ.add(levelQ.peek().left);
+            if(levelQ.peek().right!=null) levelQ.add(levelQ.peek().right);
+            System.out.print(levelQ.peek().data+"   ");
+            levelQ.poll();
+        }
+
     }
 }
