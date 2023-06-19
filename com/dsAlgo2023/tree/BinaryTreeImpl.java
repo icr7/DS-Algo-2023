@@ -37,6 +37,8 @@ public class BinaryTreeImpl {
         myTree.traverseInOrder();
         System.out.println("\n-------print complex binary tree pre order--------");
         myTree.traversePreOrder();
+        System.out.println("\n-------print complex binary tree post order--------");
+        myTree.traversePostOrder();
     }
 
 }
@@ -121,5 +123,16 @@ class BinaryTree{
         System.out.print(root.data+"   ");
         preOrder(root.left);
         preOrder(root.right);
+    }
+
+    public void traversePostOrder(){ postOrder(root);};
+
+    private void postOrder(TreeNode root){
+        if(root==null){
+            return;
+        }
+        postOrder(root.left);
+        postOrder(root.right);
+        System.out.print(root.data+"   ");
     }
 }
