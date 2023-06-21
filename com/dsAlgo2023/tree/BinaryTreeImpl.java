@@ -11,7 +11,7 @@ public class BinaryTreeImpl {
         myTree.add(12);
         myTree.add(7);
         myTree.add(9);
-        System.out.println(myTree.root);
+        System.out.println("tree size: "+myTree.size());
         System.out.println("-------print in level--------");
         myTree.traverseInLevel();
         System.out.println("\n-------print in order--------");
@@ -33,7 +33,8 @@ public class BinaryTreeImpl {
         myTree.root.right.left=new TreeNode(10);
         myTree.root.right.left.left=new TreeNode(11);
         myTree.root.right.left.left.right=new TreeNode(13);
-        System.out.println("\n-------print complex binary tree in order--------");
+        System.out.println("\n\ncomplex tree size: "+myTree.size());
+        System.out.println("-------print complex binary tree in order--------");
         myTree.traverseInOrder();
         System.out.println("\n-------print complex binary tree pre order--------");
         myTree.traversePreOrder();
@@ -134,5 +135,16 @@ class BinaryTree{
         postOrder(root.left);
         postOrder(root.right);
         System.out.print(root.data+"   ");
+    }
+
+    public int size(){
+        return size(root);
+    }
+
+    private int size(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        return size(root.left)+1+size(root.right);
     }
 }
