@@ -16,6 +16,7 @@ public class BinaryTreeImpl {
         myTree.traverseInLevel();
         System.out.println("\n-------print in order--------");
         myTree.traverseInOrder();
+        System.out.println("\nmaximum value in myTree: "+ myTree.maxInTree());
 
         myTree=new BinaryTree();
         myTree.root=new TreeNode(1);
@@ -33,13 +34,15 @@ public class BinaryTreeImpl {
         myTree.root.right.left=new TreeNode(10);
         myTree.root.right.left.left=new TreeNode(11);
         myTree.root.right.left.left.right=new TreeNode(13);
-        System.out.println("\n\ncomplex tree size: "+myTree.size());
+        System.out.println("\ncomplex tree size: "+myTree.size());
         System.out.println("-------print complex binary tree in order--------");
         myTree.traverseInOrder();
         System.out.println("\n-------print complex binary tree pre order--------");
         myTree.traversePreOrder();
         System.out.println("\n-------print complex binary tree post order--------");
         myTree.traversePostOrder();
+        System.out.println("\nmaximum value in complex myTree: "+ myTree.maxInTree());
+
     }
 
 }
@@ -146,5 +149,15 @@ class BinaryTree{
             return 0;
         }
         return size(root.left)+1+size(root.right);
+    }
+
+    public int maxInTree(){
+        return maxInTree(root);
+    }
+    private int maxInTree(TreeNode root){
+        if(root==null){
+            return Integer.MIN_VALUE;
+        }
+        return Math.max(Math.max(maxInTree(root.left), root.data),maxInTree(root.right));
     }
 }
