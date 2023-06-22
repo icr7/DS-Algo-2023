@@ -17,6 +17,7 @@ public class BinaryTreeImpl {
         System.out.println("\n-------print in order--------");
         myTree.traverseInOrder();
         System.out.println("\nmaximum value in myTree: "+ myTree.maxInTree());
+        System.out.println("maximum depth of myTree: "+ myTree.maxDepth());
 
         myTree=new BinaryTree();
         myTree.root=new TreeNode(1);
@@ -42,6 +43,7 @@ public class BinaryTreeImpl {
         System.out.println("\n-------print complex binary tree post order--------");
         myTree.traversePostOrder();
         System.out.println("\nmaximum value in complex myTree: "+ myTree.maxInTree());
+        System.out.println("maximum depth of complex myTree: "+ myTree.maxDepth());
 
     }
 
@@ -159,5 +161,16 @@ class BinaryTree{
             return Integer.MIN_VALUE;
         }
         return Math.max(Math.max(maxInTree(root.left), root.data),maxInTree(root.right));
+    }
+
+    public int maxDepth(){
+        return maxDepth(root);
+    }
+
+    private int maxDepth(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        return Math.max(maxDepth(root.left),maxDepth(root.right))+1;
     }
 }
