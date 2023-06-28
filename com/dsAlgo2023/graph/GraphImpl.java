@@ -19,6 +19,11 @@ public class GraphImpl {
 
         myGraph.bfs(0);
 
+        System.out.print("\nDFS: ");
+
+        myGraph.dfs(0);
+
+
     }
 }
 class Graph{
@@ -71,6 +76,20 @@ class Graph{
                 }
             }
         }
+    }
+
+    Set<Integer>dfsVisited= new HashSet<>();
+    public void dfs(int currentVertex){
+        dfsVisited.add(currentVertex);
+        System.out.print(currentVertex+", ");
+        List<Integer>neighbours = adjacencyList.get(currentVertex);
+
+        for (int neighbour : neighbours){
+            if(!dfsVisited.contains(neighbour)){
+                dfs(neighbour);
+            }
+        }
+
     }
 
 }
