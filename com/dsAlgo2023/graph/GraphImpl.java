@@ -78,18 +78,21 @@ class Graph{
         }
     }
 
-    Set<Integer>dfsVisited= new HashSet<>();
     public void dfs(int currentVertex){
-        dfsVisited.add(currentVertex);
+        Set<Integer>visited= new HashSet<>();
+        dfs(currentVertex,visited);
+    }
+
+    private void dfs(int currentVertex, Set<Integer> visited){
+        visited.add(currentVertex);
         System.out.print(currentVertex+", ");
         List<Integer>neighbours = adjacencyList.get(currentVertex);
 
         for (int neighbour : neighbours){
-            if(!dfsVisited.contains(neighbour)){
-                dfs(neighbour);
+            if(!visited.contains(neighbour)){
+                dfs(neighbour,visited);
             }
         }
-
     }
 
 }
