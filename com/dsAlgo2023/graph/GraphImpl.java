@@ -7,6 +7,7 @@ public class GraphImpl {
         Graph myGraph = new Graph();
         myGraph.addEdge(0,1);
         myGraph.addEdge(1,2);
+        myGraph.addEdge(1,4);
         myGraph.addEdge(2,3);
         myGraph.addEdge(2,4);
         myGraph.addEdge(3,4);
@@ -23,7 +24,14 @@ public class GraphImpl {
 
         myGraph.dfs(0);
 
+        Scanner sc = new Scanner(System.in);
+        System.out.println("\nsource: ");
+        int source=sc.nextInt();
+        System.out.println("destination: ");
+        int destination=sc.nextInt();
 
+        List<List<Integer>>paths=myGraph.getPaths(source,destination);
+        System.out.println("paths from source : "+source+" to destination : "+destination+" --> there are "+paths.size()+" ways i.e : "+paths);
     }
 }
 class Graph{
@@ -95,4 +103,32 @@ class Graph{
         }
     }
 
+    public List<List<Integer>> getPaths(int source, int destination){
+        List<List<Integer>>paths=new ArrayList<>();
+        Set<Integer> visited = new HashSet<>();
+        getPaths(source, destination, visited,  paths , new ArrayList<>());
+        return paths;
+    }
+
+    private void getPaths(int currentVertex, int destination, Set<Integer> visited, List<List<Integer>>paths, List<Integer>path){
+
+        if(currentVertex==destination){
+            path.add(currentVertex);
+            paths.add(new ArrayList<>(path));
+            path.remove(path.size()-1);
+            return;
+        }
+
+        if(path.contains(currentVertex)){
+            return;
+        }
+
+        List<Integer>neighbours=adjacencyList.get(currentVertex);
+
+        path.add(currentVertex);
+        for(int neighbour: neighbours){
+                getPaths(neighbour, destination, visited, paths, path);
+        }
+        path.remove(path.size()-1);
+    }
 }
