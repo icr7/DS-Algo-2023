@@ -105,12 +105,13 @@ class Graph{
 
     public List<List<Integer>> getPaths(int source, int destination){
         List<List<Integer>>paths=new ArrayList<>();
-        Set<Integer> visited = new HashSet<>();
-        getPaths(source, destination, visited,  paths , new ArrayList<>());
+        boolean[] visited = new boolean[adjacencyList.size()];
+       // getPaths(source, destination,  paths , new ArrayList<>());
+       getPaths(source, destination, visited,  paths , new ArrayList<>());
         return paths;
     }
 
-    private void getPaths(int currentVertex, int destination, Set<Integer> visited, List<List<Integer>>paths, List<Integer>path){
+    private void getPaths(int currentVertex, int destination, List<List<Integer>>paths, List<Integer>path){
 
         if(currentVertex==destination){
             path.add(currentVertex);
@@ -125,9 +126,28 @@ class Graph{
             path.add(currentVertex);
             List<Integer> neighbours = adjacencyList.get(currentVertex);
             for (int neighbour : neighbours) {
-                getPaths(neighbour, destination, visited, paths, path);
+                getPaths(neighbour, destination, paths, path);
             }
         }
+        path.remove(path.size()-1);
+    }
+
+    private void getPaths(int currentVertex, int destination, boolean[] visited, List<List<Integer>>paths, List<Integer>path){
+        path.add(currentVertex);
+        visited[currentVertex]=true;
+
+        if(currentVertex==destination){
+            paths.add(new ArrayList<>(path));
+        }
+        else {
+            List<Integer>neighbours=adjacencyList.get(currentVertex);
+            for (int neighbour : neighbours){
+                if(!visited[neighbour]){
+                    getPaths(neighbour, destination, visited, paths, path);
+                }
+            }
+        }
+        visited[currentVertex]=false;
         path.remove(path.size()-1);
     }
 }
