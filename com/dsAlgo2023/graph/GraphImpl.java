@@ -115,19 +115,18 @@ class Graph{
         if(currentVertex==destination){
             path.add(currentVertex);
             paths.add(new ArrayList<>(path));
-            path.remove(path.size()-1);
+        }
+
+        else if(path.contains(currentVertex)){
             return;
         }
 
-        if(path.contains(currentVertex)){
-            return;
-        }
-
-        List<Integer>neighbours=adjacencyList.get(currentVertex);
-
-        path.add(currentVertex);
-        for(int neighbour: neighbours){
+        else {
+            path.add(currentVertex);
+            List<Integer> neighbours = adjacencyList.get(currentVertex);
+            for (int neighbour : neighbours) {
                 getPaths(neighbour, destination, visited, paths, path);
+            }
         }
         path.remove(path.size()-1);
     }
