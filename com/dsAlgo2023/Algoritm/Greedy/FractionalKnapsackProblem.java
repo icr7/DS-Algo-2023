@@ -17,10 +17,11 @@ public class FractionalKnapsackProblem {
         itemList.add(new Item(50,70));
 
         int weightConstraint=60;
+        System.out.println("iteamList : "+itemList);
         System.out.println(maximumProfit(itemList, weightConstraint));
     }
 
-    public static String maximumProfit(List<Item> itemList, int w){
+    public static double maximumProfit(List<Item> itemList, int w){
         Collections.sort(itemList,new Comparator<Item>(){
             @Override
             public int compare(Item item1, Item item2){
@@ -28,8 +29,25 @@ public class FractionalKnapsackProblem {
             }
         });
 
-        System.out.println(itemList);
-        return null;
+        System.out.println("sorted itemList based on profit/weight ratio : "+itemList);
+        double maxProfit = 0;
+        for(Item item : itemList){
+            if(w-item.weight>=0){
+                System.out.println("picked item : "+item);
+                maxProfit=maxProfit+item.profit;
+                if(w-item.weight==0){
+                    return maxProfit;
+                }
+            }
+            else{
+                System.out.println("picked item weight : "+(double)item.weight/w +" profit : "+item.profit*w/item.weight);
+                maxProfit=maxProfit+((double)item.profit*w/item.weight);
+                return maxProfit;
+            }
+            w=w-item.weight;
+        }
+
+        return 0;
 
     }
 
