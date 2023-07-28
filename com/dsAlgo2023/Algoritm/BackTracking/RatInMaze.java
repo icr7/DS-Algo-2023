@@ -25,7 +25,6 @@ public class RatInMaze {
             sol[x][y]=1;
             path.append(direction);
             paths.add(path.toString());
-            return ;
         }
         if(isSafe(maze, x, y, sol)){
             sol[x][y]=1;
