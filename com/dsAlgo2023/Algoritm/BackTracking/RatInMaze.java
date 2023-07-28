@@ -6,40 +6,41 @@ import java.util.List;
 public class RatInMaze {
     public static void main(String[] args) {
         int[][] maze =
-                {{1, 0, 0, 0},
+                {{1, 1, 1, 1},
                  {1, 1, 0, 1},
-                 {1, 1, 0, 0},
+                 {1, 1, 0, 1},
                  {0, 1, 1, 1}};
         System.out.println(findPaths(maze));
     }
 
     private static ArrayList<String> findPaths(int[][] maze) {
         int [][] sol = new int[maze.length][maze.length];
-        ArrayList<String>paths= new ArrayList<>();
-        findPaths(maze,0,0,sol,new StringBuilder(),"",paths);
-        return paths;
+        ArrayList<String>possiblePaths= new ArrayList<>();
+        findPaths(maze,0,0,sol,new StringBuilder(),"",possiblePaths);
+        return possiblePaths;
     }
 
-    private static void findPaths(int[][] maze, int x, int y, int[][]sol, StringBuilder path, String direction, List<String>paths){
-        if(x== maze.length-1 && y == maze.length-1 && maze[x][y]==1){
-            sol[x][y]=1;
-            path.append(direction);
-            paths.add(path.toString());
-        }
+    private static void findPaths(int[][] maze, int x, int y, int[][]sol, StringBuilder path, String direction, List<String>possiblePaths){
+
         if(isSafe(maze, x, y, sol)){
             sol[x][y]=1;
             path.append(direction);
+            // Adding possiblePaths into possiblePaths
+            if(x== maze.length-1 && y == maze.length-1 && maze[x][y]==1){
+                possiblePaths.add(path.toString());
+            }
             //UP
-            findPaths(maze, x-1, y, sol, path, "U", paths);
+            findPaths(maze, x-1, y, sol, path, "U", possiblePaths);
             //DOWN
-            findPaths(maze, x+1, y, sol, path, "D", paths);
+            findPaths(maze, x+1, y, sol, path, "D", possiblePaths);
             //LEFT
-            findPaths(maze, x, y-1, sol, path, "L", paths);
+            findPaths(maze, x, y-1, sol, path, "L", possiblePaths);
             //RIGHT
-            findPaths(maze, x, y+1, sol, path, "R", paths);
+            findPaths(maze, x, y+1, sol, path, "R", possiblePaths);
             //backtrack
             sol[x][y]=0;
-            path.deleteCharAt(path.length()-1);
+            if(!path.isEmpty())
+                path.deleteCharAt(path.length()-1);
         }
     }
 
