@@ -1,7 +1,6 @@
 package com.dsAlgo2023.Algoritm.BackTracking;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RatInMaze {
     public static void main(String[] args) {
@@ -13,14 +12,14 @@ public class RatInMaze {
         System.out.println(findPaths(maze));
     }
 
+    static ArrayList<String>possiblePaths= new ArrayList<>();
     private static ArrayList<String> findPaths(int[][] maze) {
         int [][] sol = new int[maze.length][maze.length];
-        ArrayList<String>possiblePaths= new ArrayList<>();
-        findPaths(maze,0,0,sol,new StringBuilder(),"",possiblePaths);
+        findPaths(maze,0,0,sol,new StringBuilder(),"");
         return possiblePaths;
     }
 
-    private static void findPaths(int[][] maze, int x, int y, int[][]sol, StringBuilder path, String direction, List<String>possiblePaths){
+    private static void findPaths(int[][] maze, int x, int y, int[][]sol, StringBuilder path, String direction){
 
         if(isSafe(maze, x, y, sol)){
             sol[x][y]=1;
@@ -30,13 +29,13 @@ public class RatInMaze {
                 possiblePaths.add(path.toString());
             }
             //UP
-            findPaths(maze, x-1, y, sol, path, "U", possiblePaths);
+            findPaths(maze, x-1, y, sol, path, "U");
             //DOWN
-            findPaths(maze, x+1, y, sol, path, "D", possiblePaths);
+            findPaths(maze, x+1, y, sol, path, "D");
             //LEFT
-            findPaths(maze, x, y-1, sol, path, "L", possiblePaths);
+            findPaths(maze, x, y-1, sol, path, "L");
             //RIGHT
-            findPaths(maze, x, y+1, sol, path, "R", possiblePaths);
+            findPaths(maze, x, y+1, sol, path, "R");
             //backtrack
             sol[x][y]=0;
             if(!path.isEmpty())
