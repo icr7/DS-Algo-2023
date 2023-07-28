@@ -25,7 +25,7 @@ public class RatInMaze {
         if(isSafe(maze, x, y, sol)){
             sol[x][y]=1;
             path.append(direction);
-            // Adding possiblePaths into possiblePaths
+            // Adding path into possiblePaths
             if(x== maze.length-1 && y == maze.length-1 && maze[x][y]==1){
                 possiblePaths.add(path.toString());
             }
