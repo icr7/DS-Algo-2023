@@ -25,7 +25,7 @@ public class RatInMaze {
             sol[x][y] = 1;
             path.append(direction);
             // Adding path into possiblePaths
-            if (x == maze.length - 1 && y == maze.length - 1 && maze[x][y] == 1) {
+            if (x == maze.length - 1 && y == maze.length - 1) {
                 possiblePaths.add(path.toString());
             }
             //UP
