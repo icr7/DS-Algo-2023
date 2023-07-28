@@ -11,15 +11,17 @@ public class RatInMaze {
     static ArrayList<String> possiblePaths = new ArrayList<>();
     static int[][] sol;
     static int[][] maze;
+    static StringBuilder path;
 
     private static ArrayList<String> findPaths(int[][] m) {
         sol = new int[m.length][m.length];
         maze = m;
-        findPaths(0, 0, new StringBuilder(), "");
+        path=new StringBuilder();
+        findPaths(0, 0, "");
         return possiblePaths;
     }
 
-    private static void findPaths(int x, int y, StringBuilder path, String direction) {
+    private static void findPaths(int x, int y, String direction) {
 
         if (isSafe(x, y)) {
             sol[x][y] = 1;
@@ -29,13 +31,13 @@ public class RatInMaze {
                 possiblePaths.add(path.toString());
             }
             //UP
-            findPaths(x - 1, y, path, "U");
+            findPaths(x - 1, y, "U");
             //DOWN
-            findPaths(x + 1, y, path, "D");
+            findPaths(x + 1, y, "D");
             //LEFT
-            findPaths(x, y - 1, path, "L");
+            findPaths(x, y - 1, "L");
             //RIGHT
-            findPaths(x, y + 1, path, "R");
+            findPaths(x, y + 1, "R");
             //backtrack
             sol[x][y] = 0;
             if (!path.isEmpty()) path.deleteCharAt(path.length() - 1);
