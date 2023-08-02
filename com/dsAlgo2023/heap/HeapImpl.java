@@ -1,6 +1,6 @@
 package com.dsAlgo2023.heap;
 
-public class ConvertArrayIntoHeap {
+public class HeapImpl {
     public static void main(String[] args) {
         int[] arr = new int[]{1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17};
         buildHeap(arr);
