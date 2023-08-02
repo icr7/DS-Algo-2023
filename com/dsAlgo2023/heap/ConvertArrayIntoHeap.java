@@ -5,6 +5,12 @@ public class ConvertArrayIntoHeap {
         int[] arr = new int[]{1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17};
         buildHeap(arr);
         printHeap(arr);
+        arr=insertIntoHeap(arr, 16);
+        System.out.println("\nAfter adding 16 into heap: ");
+        printHeap(arr);
+        arr=delete(arr,2);
+        System.out.println("\nAfter deleting arr[2] i.e 16 from heap: ");
+        printHeap(arr);
     }
 
     public static void buildHeap(int[] arr) {
@@ -35,5 +41,37 @@ public class ConvertArrayIntoHeap {
         for (int x : heap) {
             System.out.print(x + " ");
         }
+    }
+
+    public static int[] insertIntoHeap(int heap[], int data) {
+        int newHeap[] = new int[heap.length + 1];
+        for (int i = 0; i < heap.length; i++)
+            newHeap[i] = heap[i];
+
+        int currPos = newHeap.length - 1;
+        int parentPos = (currPos - 1) / 2;
+
+        newHeap[currPos] = data;
+
+        if (currPos == 0) return newHeap;
+
+        while (newHeap[currPos] > newHeap[parentPos]) {
+            int temp = newHeap[currPos];
+            newHeap[currPos] = newHeap[parentPos];
+            newHeap[parentPos] = temp;
+            currPos = parentPos;
+            parentPos = (currPos - 1) / 2;
+        }
+        return newHeap;
+    }
+
+    public static int[] delete(int[] heap, int index){
+        heap[index]=heap[heap.length-1];
+        if(heap.length==0) return heap;
+        int[] newHeap = new int[heap.length-1];
+        for(int i=0;i<heap.length-1;i++)
+            newHeap[i]=heap[i];
+        heapify(newHeap,index);
+        return newHeap;
     }
 }
