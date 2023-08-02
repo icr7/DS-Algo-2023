@@ -43,8 +43,8 @@ public class HeapImpl {
         }
     }
 
-    public static int[] insertIntoHeap(int heap[], int data) {
-        int newHeap[] = new int[heap.length + 1];
+    public static int[] insertIntoHeap(int[] heap, int data) {
+        int[] newHeap = new int[heap.length + 1];
         for (int i = 0; i < heap.length; i++)
             newHeap[i] = heap[i];
 
@@ -66,8 +66,8 @@ public class HeapImpl {
     }
 
     public static int[] delete(int[] heap, int index){
-        heap[index]=heap[heap.length-1];
         if(heap.length==0) return heap;
+        heap[index]=heap[heap.length-1];
         int[] newHeap = new int[heap.length-1];
         for(int i=0;i<heap.length-1;i++)
             newHeap[i]=heap[i];
