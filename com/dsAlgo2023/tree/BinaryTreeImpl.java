@@ -12,8 +12,10 @@ public class BinaryTreeImpl {
         myTree.add(7);
         myTree.add(9);
         System.out.println("tree size: "+myTree.size());
-        System.out.println("-------print in level--------");
-        myTree.traverseInLevel();
+        System.out.println("-------print in level--bfs------");
+        myTree.printInLevelBfs();
+        System.out.println("\n-------print in level--dfs------");
+        myTree.printInLevelDfs();
         System.out.println("\n-------print in order--------");
         myTree.traverseInOrder();
         System.out.println("\nmaximum value in myTree: "+ myTree.maxInTree());
@@ -36,7 +38,11 @@ public class BinaryTreeImpl {
         myTree.root.right.left.left=new TreeNode(11);
         myTree.root.right.left.left.right=new TreeNode(13);
         System.out.println("\ncomplex tree size: "+myTree.size());
-        System.out.println("-------print complex binary tree in order--------");
+        System.out.println("-------print complex binary tree in level bfs--------");
+        myTree.printInLevelBfs();
+        System.out.println("\n-------print complex binary tree in level dfs--------");
+        myTree.printInLevelDfs();
+        System.out.println("\n-------print complex binary tree in order--------");
         myTree.traverseInOrder();
         System.out.println("\n-------print complex binary tree pre order--------");
         myTree.traversePreOrder();
@@ -96,7 +102,7 @@ class BinaryTree{
         return root;
     }
 
-    public void traverseInLevel(){
+    public void printInLevelBfs(){
         Queue<TreeNode> levelQ = new LinkedList<>();
         if(root!=null) levelQ.add(root);
         while(levelQ.size()!=0){
@@ -172,5 +178,19 @@ class BinaryTree{
             return 0;
         }
         return Math.max(maxDepth(root.left),maxDepth(root.right))+1;
+    }
+    
+    public void printInLevelDfs(){
+        int height=maxDepth();
+        for(int i=0;i<height;i++)
+            printInLevelDfs(root,i);
+    }
+    private void printInLevelDfs(TreeNode root, int level){
+        if(root==null){}
+        else if (level==0) System.out.print(root.data+"   ");
+        else {
+            printInLevelDfs(root.left,level-1);
+            printInLevelDfs(root.right,level-1);
+        }
     }
 }
