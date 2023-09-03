@@ -14,13 +14,15 @@ public class HeapImpl {
         System.out.println("\nAfter deleting "+heap[index]);
         n = deleteFromHeap(index, heap, n);
         printHeap(heap,n);
-        int data = 7;
+        int data = 10;
         System.out.println("\nAfter inserting 7 into Heap ");
         n=insertIntoHeap(data,heap,n);
         printHeap(heap,n);
+        System.out.println("\nHeap sort");
+        int[] sortedHeap = heapSort(heap, n);
+        printHeap(sortedHeap, sortedHeap.length);
 
     }
-
 
     private static void buildHeap(int[] heap, int n){
         int lastParentNode = ( n - 1) / 2;
@@ -68,10 +70,21 @@ public class HeapImpl {
                 int temp = heap[parent];
                 heap[parent]=heap[i];
                 heap[i]=temp;
-            }
-            break;
+                i=parent;
+            }else
+                break;
         }
         return n;
     }
+
+    private static int[] heapSort(int[] heap, int n) {
+        int [] sortedHeap = new int [n];
+        while(n>0){
+            sortedHeap[n-1]=heap[0];
+            n=deleteFromHeap(0,heap,n);
+        }
+        return sortedHeap;
+    }
+
 
 }
