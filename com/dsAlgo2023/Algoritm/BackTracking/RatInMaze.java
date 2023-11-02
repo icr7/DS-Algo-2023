@@ -44,7 +44,7 @@ public class RatInMaze {
             findPaths(x, y + 1, "R");
             //backtrack
             sol[x][y] = 0;
-            if (!path.isEmpty()) path.deleteCharAt(path.length() - 1);
+            if (!(path.length()==0)) path.deleteCharAt(path.length() - 1);
         }
     }
 
