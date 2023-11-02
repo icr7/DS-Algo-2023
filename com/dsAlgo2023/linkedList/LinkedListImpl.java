@@ -2,7 +2,7 @@ package com.dsAlgo2023.linkedList;
 
 public class LinkedListImpl {
     public static void main(String[] args) throws Exception {
-        LinkedList<Integer> list= new LinkedList<>();
+        LinkedList<Integer> list= new LinkedList<Integer>();
         list.addAtEnd(1);
         list.addAtEnd(0);
         list.addAtEnd(0);

@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 public class RatInMaze {
     public static void main(String[] args) {
-        int[][] maze = {{1, 1, 1, 1}, {1, 1, 0, 1}, {1, 1, 0, 1}, {0, 1, 1, 1}};
+        int[][] maze = {
+                {1, 1, 1, 1},
+                {1, 1, 0, 1},
+                {1, 1, 0, 1},
+                {0, 1, 1, 1}};
         System.out.println(findPaths(maze));
     }
 
@@ -27,7 +31,7 @@ public class RatInMaze {
             sol[x][y] = 1;
             path.append(direction);
             // Adding path into possiblePaths
-            if (x == maze.length - 1 && y == maze.length - 1) {
+            if (x == maze.length - 1 && y == maze[x].length - 1) {
                 possiblePaths.add(path.toString());
             }
             //UP

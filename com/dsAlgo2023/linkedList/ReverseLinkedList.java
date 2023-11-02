@@ -1,8 +1,5 @@
 package com.dsAlgo2023.linkedList;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ReverseLinkedList {
     public static void main(String[] args) {
         Node head = new Node(1);
@@ -24,41 +21,27 @@ public class ReverseLinkedList {
         head = reverseLinkedList(head);
         System.out.println("Undo reversing linked list ---->\n" + head);
 
-        head = reverseLinkedListInGroup(head);
-        System.out.println("After reversing in group ---->\n" + head);
+        head = reverseLinkedListInGroup(head,4);
+        System.out.println("After reversing in group of 4 ---->\n" + head);
 
     }
 
 
-    public static Node reverseLinkedListInGroup(Node head) {
-        Node prev = null;
-        Node next = null;
-        Node curr = head;
-        int count = 0;
-        List<Pair> pairs = new ArrayList<>();
-        Node tail = head;
-        while (curr != null) {
-            if ((count != 0 && count % 4 == 0) || curr.next == null) {
-                Pair pair = new Pair();
-                if (curr.next == null) pair.head = curr;
-                else pair.head = prev;
-                pair.tail = tail;
-                pairs.add(pair);
-                tail = curr;
-            }
-            next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
+    public static Node reverseLinkedListInGroup(Node head,int k){
+        Node prev=null;
+        Node next=null;
+        Node curr=head;
+        int count=0;
+        while(count<k && curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
             count++;
         }
-
-        for (int i = 0; i < pairs.size(); i++) {
-            if (i == pairs.size() - 1) pairs.get(i).tail.next = null;
-            else pairs.get(i).tail.next = pairs.get(i + 1).head;
-        }
-
-        return pairs.get(0).head;
+        if(next!=null)
+        head.next=reverseLinkedListInGroup(next,k);
+        return prev;
     }
 
     private static Node reverseLinkedList(Node head) {
@@ -76,10 +59,7 @@ public class ReverseLinkedList {
     }
 }
 
-class Pair {
-    Node head;
-    Node tail;
-}
+
 
 class Node {
     int data;

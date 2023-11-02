@@ -2,7 +2,7 @@ package com.dsAlgo2023.Algoritm.DynamicProgramming;
 
 import java.util.Arrays;
 
-public class CoinChangeProblem {
+public class MinimumCoinProblem {
     public static void main(String[] args) {
         int [] coinTypes = new int[]{7,5,1};
         int sum=18;
