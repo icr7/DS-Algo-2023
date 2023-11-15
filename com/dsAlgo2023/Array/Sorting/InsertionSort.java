@@ -2,23 +2,14 @@ package com.dsAlgo2023.Array.Sorting;
 
 public class InsertionSort {
     public static void main(String[] args) {
-        int []arr = new int[]{7,3,8,9,1};
-        sort(arr);
-        for(int x : arr)
-            System.out.print(x+" ");
-    }
+        int[] arr = new int[]{7, 3, 8, 9, 1};
 
-    private static void sort(int[] arr) {
-        for(int i = 1;i< arr.length;i++){
-            int key = arr[i];
-            int j = i-1;
-
-            while(j>=0 && arr[j]>key){
-                arr[j+1]=arr[j];
-                j--;
+        for (int i = 1; i < arr.length; i++)
+            for (int j = i; j > 0 && arr[j - 1] > arr[j]; j--) {
+                int temp = arr[j];
+                arr[j] = arr[j - 1];
+                arr[j - 1] = temp;
             }
-            arr[j+1]=key;
-        }
-
+        for (int x : arr) System.out.print(x + ", ");
     }
 }
