@@ -1,8 +1,10 @@
 package com.dsAlgo2023.linkedList;
 
 public class LinkedList<T> {
-    Node head;
-    Node curr;
+    private Node<T> head;
+    private Node<T> curr;
+
+    private int size;
 
     static class Node<T> {
         T data;
@@ -27,6 +29,19 @@ public class LinkedList<T> {
         } else {
             curr.next = new Node<>(data);
             curr = curr.next;
+        }
+        size++;
+    }
+
+    public int size(){
+        return this.size;
+    }
+
+    public void traverse(){
+        Node node = head;
+        while (node!=null){
+            System.out.println(node.data);
+            node=node.next;
         }
     }
 }
