@@ -43,6 +43,8 @@ public class StreamApi {
         people.stream().collect(Collectors.partitioningBy(x->x.age<30)).entrySet().forEach(System.out::println);
 
 
+
+
     }
 
 

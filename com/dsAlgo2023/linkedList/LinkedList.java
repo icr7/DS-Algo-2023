@@ -69,4 +69,19 @@ public class LinkedList<T> {
         }
         delete(node.next, --pos);
     }
+
+
+    public int search(T element){
+        int pos=-1;
+        if(head==null){
+            return pos;
+        }
+        Node currNode = head;
+        while(currNode!=null){
+            pos++;
+            if(currNode.data==element) return pos;
+            currNode=currNode.next;
+        }
+        return -1;
+    }
 }
