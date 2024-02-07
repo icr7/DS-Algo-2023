@@ -97,4 +97,20 @@ public class LinkedList<T> {
         }
         head = prev;
     }
+
+    public void reverseByRecusion() {
+        reverseByRecusion(head, null, null);
+    }
+
+    private void reverseByRecusion(Node curr, Node prev, Node next) {
+        if (curr == null) {
+            head = prev;
+            return;
+        }
+        next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+        reverseByRecusion(curr, prev, next);
+    }
 }
