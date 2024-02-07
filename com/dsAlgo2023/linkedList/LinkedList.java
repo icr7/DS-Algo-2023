@@ -58,44 +58,43 @@ public class LinkedList<T> {
         if (pos == 0) {
             Node deleteingNode = head;
             head = head.next;
-            deleteingNode.next=null;
+            deleteingNode.next = null;
             return;
         }
         if (pos == 1) {
             Node deleteingNode = node.next;
             node.next = node.next.next;
-            deleteingNode.next= null;
+            deleteingNode.next = null;
             return;
         }
         delete(node.next, --pos);
     }
 
 
-    public int search(T element){
-        int pos=-1;
-        if(head==null){
+    public int search(T element) {
+        int pos = -1;
+        if (head == null) {
             return pos;
         }
         Node currNode = head;
-        while(currNode!=null){
+        while (currNode != null) {
             pos++;
-            if(currNode.data==element) return pos;
-            currNode=currNode.next;
+            if (currNode.data == element) return pos;
+            currNode = currNode.next;
         }
         return -1;
     }
 
-    public void reverse(){
+    public void reverse() {
         Node curr = head;
-        Node prev=null , next =null;
+        Node prev = null, next = null;
 
-        while(curr != null){
+        while (curr != null) {
             next = curr.next;
-            curr.next=prev;
-            prev=curr;
+            curr.next = prev;
+            prev = curr;
             curr = next;
         }
-
-        head=prev;
+        head = prev;
     }
 }
