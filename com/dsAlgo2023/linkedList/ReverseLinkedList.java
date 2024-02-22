@@ -11,5 +11,8 @@ public class ReverseLinkedList {
         System.out.println("---------- Reverse Linked List ----------");
         list.reverse();
         list.traverse();
+        System.out.println("---------- Reverse the Linked List by recursion----------");
+        list.reverseByRecusion();
+        list.traverse();
     }
 }

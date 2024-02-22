@@ -63,7 +63,7 @@ public class LinkedList<T> {
         }
         if (pos == 1) {
             Node deleteingNode = node.next;
-            node.next = node.next.next;
+            node.next = deleteingNode.next;
             deleteingNode.next = null;
             return;
         }
