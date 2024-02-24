@@ -115,11 +115,11 @@ public class LinkedList<T> {
         reverseByRecusion(curr, prev, next);
     }
 
-    public void reverseKElements(int k){
-        reverseKElements(head,null,null,k);
+    public void reverseFirstKElements(int k){
+        reverseFirstKElements(head,null,null,k);
     }
 
-    private void reverseKElements(Node curr, Node prev, Node next, int k){
+    private void reverseFirstKElements(Node curr, Node prev, Node next, int k){
         if(curr==null || k==0){
             head.next=curr;
             head=prev;
@@ -129,6 +129,6 @@ public class LinkedList<T> {
         curr.next=prev;
         prev=curr;
         curr=next;
-        reverseKElements(curr,prev,next,--k);
+        reverseFirstKElements(curr,prev,next,--k);
     }
 }
