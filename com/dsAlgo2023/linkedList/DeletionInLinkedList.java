@@ -8,7 +8,7 @@ public class DeletionInLinkedList
         mylinkedList.add(20);
         mylinkedList.add(7);
         mylinkedList.add(2);
-        mylinkedList.delete(0);
+        mylinkedList.delete(3);
         mylinkedList.traverse();
     }
 }

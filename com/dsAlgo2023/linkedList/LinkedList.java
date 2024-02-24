@@ -40,9 +40,10 @@ public class LinkedList<T> {
     public void traverse() {
         Node node = head;
         while (node != null) {
-            System.out.println(node.data);
+            System.out.print(node.data+", ");
             node = node.next;
         }
+        System.out.println();
     }
 
     public void delete(int pos) {
@@ -112,5 +113,22 @@ public class LinkedList<T> {
         prev = curr;
         curr = next;
         reverseByRecusion(curr, prev, next);
+    }
+
+    public void reverseKElements(int k){
+        reverseKElements(head,null,null,k);
+    }
+
+    private void reverseKElements(Node curr, Node prev, Node next, int k){
+        if(curr==null || k==0){
+            head.next=curr;
+            head=prev;
+            return;
+        }
+        next=curr.next;
+        curr.next=prev;
+        prev=curr;
+        curr=next;
+        reverseKElements(curr,prev,next,--k);
     }
 }
