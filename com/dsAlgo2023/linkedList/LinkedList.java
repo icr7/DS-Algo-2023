@@ -1,5 +1,8 @@
 package com.dsAlgo2023.linkedList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LinkedList<T> {
     private Node<T> head;
     private Node<T> curr;
@@ -131,4 +134,35 @@ public class LinkedList<T> {
         curr=next;
         reverseFirstKElements(curr,prev,next,--k);
     }
+
+    public void reverseElementsInGroup(int k){
+        List<Node> reversedGroupList = new ArrayList<>();
+        List<Node> tailOfReversedGroup = new ArrayList<>();
+        tailOfReversedGroup.add(head);
+        Node start = reverseKElements(head,null,null, k, tailOfReversedGroup);
+        head = start;
+        reversedGroupList.add(start);
+        while(start.next!=null){
+            start=reverseKElements(tailOfReversedGroup.get(tailOfReversedGroup.size()-1), null,null, k, tailOfReversedGroup);
+            reversedGroupList.add(start);
+        }
+        for (int i=0;i< tailOfReversedGroup.size()-1;i++){
+            tailOfReversedGroup.get(i).next = reversedGroupList.get(i+1);
+        }
+    }
+
+    private Node reverseKElements(Node curr, Node prev, Node next, int k, List<Node> tailOfReversedGroup){
+        if(curr==null || k==0) {
+            if(curr!=null)
+            tailOfReversedGroup.add(curr);
+            return prev;
+        }
+
+        next=curr.next;
+        curr.next=prev;
+        prev=curr;
+        curr=next;
+        return reverseKElements(curr,prev,next,--k, tailOfReversedGroup);
+    }
+
 }
