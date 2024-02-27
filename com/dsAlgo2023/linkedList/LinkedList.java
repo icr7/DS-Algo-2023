@@ -136,33 +136,24 @@ public class LinkedList<T> {
     }
 
     public void reverseElementsInGroup(int k){
-        List<Node> reversedGroupList = new ArrayList<>();
-        List<Node> tailOfReversedGroup = new ArrayList<>();
-        tailOfReversedGroup.add(head);
-        Node start = reverseKElements(head,null,null, k, tailOfReversedGroup);
-        head = start;
-        reversedGroupList.add(start);
-        while(start.next!=null){
-            start=reverseKElements(tailOfReversedGroup.get(tailOfReversedGroup.size()-1), null,null, k, tailOfReversedGroup);
-            reversedGroupList.add(start);
-        }
-        for (int i=0;i< tailOfReversedGroup.size()-1;i++){
-            tailOfReversedGroup.get(i).next = reversedGroupList.get(i+1);
-        }
+        head=reverseGroup(head,k);
     }
 
-    private Node reverseKElements(Node curr, Node prev, Node next, int k, List<Node> tailOfReversedGroup){
-        if(curr==null || k==0) {
-            if(curr!=null)
-            tailOfReversedGroup.add(curr);
-            return prev;
-        }
+    private Node reverseGroup(Node curr_head, int k){
+        if(curr_head == null) return null;
 
-        next=curr.next;
-        curr.next=prev;
-        prev=curr;
-        curr=next;
-        return reverseKElements(curr,prev,next,--k, tailOfReversedGroup);
+        Node curr=curr_head, prev =null, next=null;
+        int count=0;
+        while(curr!=null && count<k){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+            count++;
+        }
+        if(next!=null)
+        curr_head.next=reverseGroup(next,k);
+        return prev;
     }
 
 }
