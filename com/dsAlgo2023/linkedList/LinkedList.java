@@ -151,7 +151,7 @@ public class LinkedList<T> {
             curr=next;
             count++;
         }
-        if(next!=null)
+      //  if(next!=null)
         curr_head.next=reverseGroup(next,k);
         return prev;
     }
