@@ -169,4 +169,14 @@ public class LinkedList<T> {
         return false;
     }
 
+    public void deleteDuplicates(){
+        Node curr = head;
+        while(curr!=null){
+            Node store = curr;
+            int repeatVal= (int)store.data;
+            while(curr!=null && (int)curr.data==repeatVal)curr=curr.next;
+            store.next=curr;
+        }
+    }
+
 }
