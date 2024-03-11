@@ -1,7 +1,9 @@
 package com.dsAlgo2023.linkedList;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class LinkedList<T> {
     private Node<T> head;
@@ -154,6 +156,17 @@ public class LinkedList<T> {
       //  if(next!=null)
         curr_head.next=reverseGroup(next,k);
         return prev;
+    }
+
+    public boolean detectLoop(){
+        Node curr = head;
+        Set<Node> myNodeSet = new HashSet<>();
+        while(curr!=null){
+            if(myNodeSet.contains(curr)) return true;
+            myNodeSet.add(curr);
+            curr=curr.next;
+        }
+        return false;
     }
 
 }
